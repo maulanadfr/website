@@ -33,8 +33,13 @@ def a(request):
     return HttpResponse()
 
 
+def coba(request):
+    return render(request, 'coba.html')
+
+
 def shop(request):
     return render(request, 'shop.html')
+
 
 
 def shop_laptop(request):

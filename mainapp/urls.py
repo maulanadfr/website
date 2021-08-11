@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('count/<int:angka>/', views.count),
     path('sapa/<str:nama>/', views.sapa),
+    path('coba/', views.coba),
     path('shop/', views.shop),
     path('shop/laptop/', views.shop_laptop),
     path('shop/smartphone/', views.shop_smartphone),
