@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import *
 from django.http import HttpResponse
 
 # Create your views here.
@@ -60,5 +61,26 @@ def first_page(request):
 
 def second_page(request):
     return render(request, 'secondpage.html')
+
+
+def shop_laptop_list(request):
+    try:
+        print(request.GET)
+        category_laptop = Category.objects.get(pk=1)
+        #pk == primary_key
+        if(request.GET=={}):
+            product_laptop = Product.objects.filter(category=category_laptop)
+        else:
+            product_laptop= Product.objects.filter(category=category_laptop).filter(
+                name__icontains=request.GET['product_name'])
+
+        # WHERE name like 'chrome'
+        if(product_laptop.count() != 0):
+            return render(request, 'shop_laptop_list.html', {'product_list': product_laptop, 'available': True})
+        else:
+            return render(request, 'shop_laptop_list.html', {'available': False})
+    except:
+        return HttpResponse("Terjadi Error")
+
 
 # Create your views here.
